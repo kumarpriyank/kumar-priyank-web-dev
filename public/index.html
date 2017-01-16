@@ -2,29 +2,112 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Web Dev Course Home Page</title>
+    <!-- Adding the meta tag to make the page responsive-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/priyankSite.css" rel="stylesheet">
+    <title> Priyank Kumar - MY JOURNEY MY LIFE </title>
 </head>
 <body>
-    <h1>Web Dev Course Home Page</h1>
+    <!-- Adding the top navigation pane -->
+    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#pk-home-navbar-collapse-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand topnav" href="#">Web Dev Course Home Page</a>
+            </div>
+            <!-- Collect the navigation links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="pk-home-navbar-collapse-toggle">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#about">About</a>
+                    </li>
+                    <li>
+                        <a href="#services">Services</a>
+                    </li>
+                    <li>
+                        <a href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
 
-    <p>
-        Customize this home page to your linking.
-    </p>
 
-    <h2>Required links</h2>
-    <ul>
-        <li>
-            <a href="project/index.html">Project</a>
-        </li>
-        <li>
-            <a href="assignment/index.html">Assignment</a>
-        </li>
-        <li>
-            <a href="test/index.html">Test MongoDB</a>
-        </li>
-        <li>
-            <a href="https://github.com/kumarpriyank/kumar-priyank-web-dev.git">Your public repository at GitHub.com</a>
-        </li>
-    </ul>
+    <!-- Header -->
+    <a name="about"></a>
+    <div class="intro-header">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message">
+                        <h1>My Landing Page</h1>
+                        <h3>A Journey into my world.</h3>
+                        <hr class="intro-divider">
+                        <ul class="list-inline intro-social-buttons">
+                            <li>
+                                <a href="https://twitter.com/priyank07310" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/kumarpriyank" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                            </li>
+                            <li>
+                                <a href="https://www.linkedin.com/in/kumarpriyank" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.intro-header -->
+
+    <a  name="services"></a>
+    <div class="content-services-section-1">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li role="presentation" class="active"><a href="project/index.html">Project</a></li>
+                        <br>
+                        <li role="presentation" class="active"><a href="assignment/index.html">Assignment</a></li>
+                        <br>
+                        <li role="presentation" class="active"><a href="test/index.html">Test MongoDB</a></li>
+                        <br>
+                        <li role="presentation" class="active"><a href="https://github.com/kumarpriyank/kumar-priyank-web-dev.git">Your public repository at GitHub.com</a></li>
+                    </ul>
+                    <br>
+                    <div>
+
+                    </div>
+                </div>
+                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <img class="img-responsive" src="img/faith-work.jpg" alt="">
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-a -->
 </body>
 </html>
