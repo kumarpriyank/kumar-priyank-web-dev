@@ -4,23 +4,22 @@
     <meta charset="UTF-8">
     <title>Profile</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="assignment/css/style.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="#">Profile</a>
-      </div>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-plus-sign"></span></a></li>
+      <ul class="nav navbar-nav">
+        <li><a class="navbar-brand">Profile</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right pull-right">
+          <li><a class="navbar-font" href="#"><span class="glyphicon glyphicon-plus"></span></a></li>
       </ul>
     </div>
   </nav>
-<div class="container">
     <form name="profileForm" id="profileForm" novalidate>
-        <div class="form-group" style="padding-top:80px">
+        <div class="form-group">
             <label for="username">Username</label>
             <input type="text" class="form-control" id="username" placeholder="username"
                 name="username" required>
@@ -44,8 +43,8 @@
 </div>
 <nav class="navbar navbar-inverse navbar-fixed-bottom">
   <div class="container-fluid">
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span></a></li>
+    <ul class="nav navbar-nav navbar-right pull-right">
+      <li><a href="#" class="navbar-font"><span class="glyphicon glyphicon-user"></span></a></li>
     </ul>
   </div>
 </nav>
