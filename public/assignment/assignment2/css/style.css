@@ -1,0 +1,63 @@
+body {
+    padding-top: 80px;
+    padding-bottom: 80px;
+    overflow: hidden;
+}
+
+input.form-control {
+    margin-bottom: 5px;
+}
+
+form{
+    padding: 10px;
+}
+
+list-element-menu {
+    top: 0px;
+    right: 0px;
+    position: absolute;
+    z-index: 10;
+    background-color: white;
+}
+
+.list-group-item {
+    border: none;
+}
+
+.pk-li {
+    color: transparent !important;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.navbar .navbar-nav {
+    display: inline-block;
+    float: none;
+    vertical-align: top;
+}
+
+.navbar .navbar-collapse {
+    text-align: center;
+}
+
+.navbar-default .navbar-nav .navbar-font {
+    /**padding: 10px 17px;*/
+    color:white;
+    font-size:20px;
+    line-height: 25px;
+    display: inline-block;
+}
+
+.relative-position {
+    position: relative;
+}
+
+.site-list-scroll-overflow-y
+{
+    overflow-y: scroll;
+    position: relative;
+    height: -moz-calc(100vh - 140px); /* Firefox -> 100vh - padding top - padding bottom*/
+    height: -webkit-calc(100vh - 140px); /* Chrome, Safari -> 100vh - padding top - padding bottom*/
+}
