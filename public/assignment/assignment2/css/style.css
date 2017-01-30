@@ -61,3 +61,18 @@ a:hover {
     height: -moz-calc(100vh - 140px); /* Firefox -> 100vh - padding top - padding bottom*/
     height: -webkit-calc(100vh - 140px); /* Chrome, Safari -> 100vh - padding top - padding bottom*/
 }
+
+.btn-new-website {
+    padding-bottom: 0px;
+    padding-top: 5px;
+    background-color:#222;
+    color: #9d9d9d;
+}
+
+.btn-new-website:hover {
+    color:#fff;
+}
+
+.hide-bullet {
+    color: transparent !important;
+}
