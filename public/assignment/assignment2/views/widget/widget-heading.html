@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Page New</title>
+  <title>Widget Heading</title>
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="css/style.css" rel="stylesheet"/>
+  <link href="../../css/style.css" rel="stylesheet"/>
 </head>
 <body>
 
@@ -15,7 +15,7 @@
         <li><a class="navbar-font" href="#"><span class="glyphicon glyphicon-chevron-left page-glyp"></span></a></li>
       </ul>
       <ul class="nav navbar-nav">
-        <li><a class="navbar-brand"> New Pages</a></li>
+        <li><a class="navbar-brand"> Widget Edit </a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right pull-right">
         <li><a class="navbar-font" href="#"><span class="glyphicon glyphicon-ok page-glyp"></span></a></li>
@@ -25,13 +25,18 @@
   <div class="container-fluid">
       <form name="newPage" novalidate>
           <div class="form-group">
-              <label for="pagename">Name</label>
-              <input type="text" class="form-control" id="pagename" name="pagename" placeholder="Page Name" required>
+              <label for="widgetname">Name</label>
+              <input type="text" class="form-control" id="widgetname" name="widgetname" placeholder="Label" required>
           </div>
           <div class="form-group">
-              <label for="title">Title</label>
-              <input type="text" class="form-control" id="title" name="title" placeholder="Title" required>
-          </div>  
+              <label for="widgettitle">Text</label>
+              <input type="text" class="form-control" id="widgettitle" name="widgettitle" placeholder="Flying Cretaceous Monster Ate Dinosaurs For Breakfast" required>
+          </div>
+          <div class="form-group">
+              <label for="widgetsize">Text</label>
+              <input type="text" class="form-control" id="widgetsize" name="widgetsize" placeholder="3" required>
+          </div>
+            <button class="btn btn-danger btn-block">Delete</button>
       </form>
   <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
