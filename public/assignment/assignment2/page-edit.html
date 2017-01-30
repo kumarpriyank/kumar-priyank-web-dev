@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Page</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="css/style.css" rel="stylesheet"/>
+</head>
+<body>
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <ul class="nav navbar-nav">
+        <li><a class="navbar-font" href="#"><span class="glyphicon glyphicon-chevron-left page-glyp"></span></a></li>
+      </ul>
+      <ul class="nav navbar-nav">
+        <li><a class="navbar-brand"> Edit Pages</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right pull-right">
+        <li><a class="navbar-font" href="#"><span class="glyphicon glyphicon-ok page-glyp"></span></a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container-fluid">
+      <form name="newPage" novalidate>
+          <div class="form-group">
+              <label for="pagename">Name</label>
+              <input type="text" class="form-control" id="pagename" name="pagename" placeholder="Page Name" required>
+          </div>
+          <div class="form-group">
+              <label for="title">Title</label>
+              <input type="text" class="form-control" id="title" name="title" placeholder="Title" required>
+          </div>
+            <button class="btn btn-danger btn-block">Delete</button> 
+      </form>
+  <nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+      <ul class="nav navbar-nav navbar-right pull-right">
+        <li><a href="#" class="navbar-font"><span class="glyphicon glyphicon-user page-glyp"></span></a></li>
+      </ul>
+    </div>
+  </nav>
+</body>
+</html>
