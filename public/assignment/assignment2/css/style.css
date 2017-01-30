@@ -8,7 +8,7 @@ input.form-control {
     margin-bottom: 5px;
 }
 
-form{
+form {
     padding: 10px;
 }
 
@@ -22,10 +22,6 @@ list-element-menu {
 
 .list-group-item {
     border: none;
-}
-
-.pk-li {
-    color: transparent !important;
 }
 
 a:hover {
@@ -75,4 +71,59 @@ a:hover {
 
 .hide-bullet {
     color: transparent !important;
+}
+
+.page-glyp {
+  color:black;
+}
+
+.navbar-default {
+    background-color: lightgrey;
+    border-color: darkgrey;
+    border-radius: 0;
+}
+
+.navbar-default .navbar-brand{
+  color:#222
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+    color: darkgrey;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #222;
+}
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    background-color: darkgrey;
+}
+
+.navbar-default .navbar-nav > .active > a{
+  color: #222;
+  background-color: #222;
+}
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+    color: darkgrey;
+    background-color: #222;
+}
+
+.navbar-default .navbar-text {
+    color: #222;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: #222;
+}
+
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+    background-color: darkgrey;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #222;
 }
