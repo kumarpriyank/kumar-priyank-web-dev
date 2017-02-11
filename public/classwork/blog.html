@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!-- created an attribute called ng-app. Binding a View to a controller, used ng-app-->
+<html lang="en" ng-app="BlogApp">
+<head>
+  <meta charset="utf-8">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+  <script src="js/app.js"></script>
+  <title> My Blog</title>
+  </meta>
+</head>
+<body>
+  <div class="container" ng-controller="BlogController">
+    <div ng-repeat="blog in blogPost">
+      <h2>{{blog.title}}</h2>
+      <p>{{blog.content}}</p>
+    </div>
+    <h1> Post New Blog </h1>
+    <label> Blog Title</label>
+    <input class="form-control">
+
+    <label> Blog Description</label>
+    <textarea class="form-control"></textarea>
+
+    <button class="btn btn-primary btn-block" ng-click="addPost(blog)">Add Post</button>
+
+    {{blogPost}}
+  </div>
+</body>
+</html>
