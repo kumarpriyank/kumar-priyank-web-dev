@@ -3,23 +3,34 @@
         .module("WebAppMaker")
         .controller("EditWebsiteController", editWebsiteController);
 
-    function editWebsiteController($location, UserService) {
+    function editWebsiteController($routeParams, $location, WebsiteService) {
         var vm = this;
+        vm.userId = $routeParams["uid"];
+        vm.websiteId = $routeParams["wid"];
 
-        // event handlers
-        vm.login = login;
+        // Event handlers for handling the events
+        vm.updateWebsite = updateWebsite;
+        vm.deleteWebsite = deleteWebsite;
+
 
         function init() {
+            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
         }
         init();
 
-        function login(user) {
-            var user = UserService.findUserByCredentials(user.username, user.password);
-            if(user) {
-                $location.url("/user/"+user._id);
+        function updateWebsite(website) {
+            website.developerId = vm.userId;
+            var website = WebsiteService.updateWebsite(vm.websiteId, website);
+            if (website == null) {
+                vm.error = "Unable to update website. Please try again";
             } else {
-                vm.error = "User not found";
+                $location.url("/user/" + vm.userId + "/website");
             }
-        }
+        };
+
+        function deleteWebsite(website) {
+            WebsiteService.deleteWebsite(vm.websiteId);
+            $location.url("/user/" + vm.userId + "/website");
+        };
     }
 })();

@@ -3,23 +3,16 @@
         .module("WebAppMaker")
         .controller("WebsiteListController", websiteListController);
 
-    function websiteListController($location, UserService) {
+    function websiteListController($routeParams, $location, WebsiteService) {
         var vm = this;
+        var uid = $routeParams["uid"];
+        vm.userId = $routeParams.uid;
+        vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
 
-        // event handlers
-        vm.login = login;
+        // Event handlers for handling the events
 
         function init() {
         }
         init();
-
-        function login(user) {
-            var user = UserService.findUserByCredentials(user.username, user.password);
-            if(user) {
-                $location.url("/user/"+user._id);
-            } else {
-                vm.error = "User not found";
-            }
-        }
     }
 })();

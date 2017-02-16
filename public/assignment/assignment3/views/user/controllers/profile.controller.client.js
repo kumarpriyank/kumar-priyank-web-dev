@@ -10,7 +10,6 @@
         vm.user = user;
         vm.update = update;
 
-
         // event handler
 
         function init() {
@@ -29,6 +28,5 @@
                 }
             }
         }
-
     }
 })();

@@ -10,7 +10,9 @@
             {_id: "456", name: "Gizmodo",  developerId: "456", description: "Lorem" },
             {_id: "123", name: "Tic Tac Toe", developerId: "123", description: "Lorem" },
             {_id: "123", name: "Checkers", developerId: "123", description: "Lorem" },
-            {_id: "123", name: "Chess", developerId: "234", description: "Lorem" }
+            {_id: "123", name: "Chess", developerId: "234", description: "Lorem" },
+            {_id: "124", name: "Checkers", developerId: "234", description: "Lorem Ipsum" },
+            {_id: "125", name: "BlackJack", developerId: "234", description: "Lorem Ispum Lorem" }
         ];
 
         var api = {
@@ -31,18 +33,20 @@
 
         // Find website by user
         function findWebsitesByUser(userId) {
+            var sites = [];
             for (var w in websites) {
                 if( websites[w].developerId == userId)
-                    return angular.copy(websites[w]);
+                    sites.push(websites[w]);
             }
-            return null;
+            return sites;
         }
+
 
         // Find Website by website id
         function findWebsiteById(websiteId) {
             for (var w in websites) {
                 if( websites[w]._id == websiteId)
-                    return angular.copy(websites[w]);
+                    return websites[w];
             }
             return null;
         }
@@ -56,7 +60,8 @@
                     websites[w].name = website.name;
                     websites[w].developerId = website.developerId;
                     websites[w].description = website.description;
-                    return angular.copy(websites[w])
+                    console.log(websites);
+                    return websites[w]
                 }
             }
             return null;
