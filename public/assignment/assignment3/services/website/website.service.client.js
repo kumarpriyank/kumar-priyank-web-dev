@@ -46,7 +46,7 @@
         function findWebsiteById(websiteId) {
             for (var w in websites) {
                 if( websites[w]._id == websiteId)
-                    return websites[w];
+                    return angular.copy(websites[w]);
             }
             return null;
         }
@@ -60,8 +60,7 @@
                     websites[w].name = website.name;
                     websites[w].developerId = website.developerId;
                     websites[w].description = website.description;
-                    console.log(websites);
-                    return websites[w]
+                    return angular.copy(websites[w]);
                 }
             }
             return null;

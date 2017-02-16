@@ -43,7 +43,7 @@
       <ul class="navbar-text pull-right">
         <li class="hide-bullet">
           <a class="navbar-font"
-             ng-click="model.updateWebsite(website)"> <span class="glyphicon glyphicon-ok"> </span> </a>
+             ng-click="model.updateWebsite(model.website)"> <span class="glyphicon glyphicon-ok"> </span> </a>
         </li>
       </ul>
     </div>
@@ -78,7 +78,7 @@
   <form class="padding-left-12" name="newWebsite" id="newWebsite" novalidate>
     <div class="form-group">
       <label for="name">Website Name</label>
-      <input ng-model="website.name"
+      <input ng-model="model.website.name"
              type="text"
              class="form-control"
              id="name"
@@ -87,13 +87,13 @@
     </div>
     <div class="form-group">
       <label for="description">Website Description</label>
-      <textarea ng-model="website.description"
+      <textarea ng-model="model.website.description"
                 class="form-control"
                 rows="6"
                 id="description"
                 placeholder="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "></textarea>
     </div>
-    <a ng-click="model.deleteWebsite(website)"
+    <a ng-click="model.deleteWebsite(model.website)"
        class="btn btn-danger btn-block">Delete</a>
   </form>
 </div>

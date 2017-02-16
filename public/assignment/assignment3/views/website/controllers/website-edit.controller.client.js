@@ -15,11 +15,11 @@
 
         function init() {
             vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
+            vm.website = WebsiteService.findWebsiteById(vm.websiteId);
         }
         init();
 
         function updateWebsite(website) {
-            website.developerId = vm.userId;
             var website = WebsiteService.updateWebsite(vm.websiteId, website);
             if (website == null) {
                 vm.error = "Unable to update website. Please try again";
