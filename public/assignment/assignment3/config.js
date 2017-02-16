@@ -5,7 +5,7 @@
 
     function configuration($routeProvider, $locationProvider) {
         $routeProvider
-            .when("/", { redirectTo:"/index.html"})
+            .when("/", { redirectTo:"/login"})
             .when("/login", {
                 templateUrl: "views/user/templates/login.view.client.html",
                 controller: "LoginController",
@@ -54,7 +54,7 @@
                 templateUrl: "/views/widget/templates/widget-edit.view.client.html",
                 controller: "EditWidgetController",
                 controllerAs: "model" })
-            .otherwise({redirectTo:"/index.html"});
+            .otherwise({redirectTo:"/login"});
 
         // $locationProvider.html5Mode(true);
     }

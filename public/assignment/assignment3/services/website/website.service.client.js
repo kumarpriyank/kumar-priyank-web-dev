@@ -24,7 +24,8 @@
 
         // Creating a Website
         function createWebsite(userId, website) {
-            website.developerId=userId;
+            website.developerId = userId;
+            website._id = (new Date()).getTime();
             websites.push(website);
         }
 
@@ -32,7 +33,7 @@
         function findWebsitesByUser(userId) {
             for (var w in websites) {
                 if( websites[w].developerId == userId)
-                    return websites[w];
+                    return angular.copy(websites[w]);
             }
             return null;
         }
@@ -41,10 +42,11 @@
         function findWebsiteById(websiteId) {
             for (var w in websites) {
                 if( websites[w]._id == websiteId)
-                    return websites[w];
+                    return angular.copy(websites[w]);
             }
             return null;
         }
+
 
 
         // Update Website
@@ -54,8 +56,10 @@
                     websites[w].name = website.name;
                     websites[w].developerId = website.developerId;
                     websites[w].description = website.description;
+                    return angular.copy(websites[w])
                 }
             }
+            return null;
         }
 
         // Delete the website
