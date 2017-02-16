@@ -3,23 +3,23 @@
         .module("WebAppMaker")
         .controller("NewPageController", newPageController);
 
-    function newPageController($location, UserService) {
+    function newPageController($routeParams, $location, PageService) {
         var vm = this;
+        var uid = $routeParams["uid"];
+        vm.userId = uid;
+        vm.websiteId = $routeParams["wid"];
 
-        // event handlers
-        vm.login = login;
+
+        // Event handlers for handling the events
+        vm.createPage = createPage;
 
         function init() {
         }
         init();
 
-        function login(user) {
-            var user = UserService.findUserByCredentials(user.username, user.password);
-            if(user) {
-                $location.url("/user/"+user._id);
-            } else {
-                vm.error = "User not found";
-            }
+        function createPage (page) {
+            PageService.createPage(vm.websiteId, page);
+            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
         }
     }
 })();

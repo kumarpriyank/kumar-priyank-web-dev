@@ -3,23 +3,34 @@
         .module("WebAppMaker")
         .controller("EditPageController", editPageController);
 
-    function editPageController($location, UserService) {
+    function editPageController($routeParams, $location, PageService) {
         var vm = this;
+        vm.userId = $routeParams["uid"];
+        vm.websiteId = $routeParams["wid"];
+        vm.pageId = $routeParams["pid"];
 
-        // event handlers
-        vm.login = login;
+        // Event handlers for handling the events
+        vm.updatePage = updatePage;
+        vm.deletePage = deletePage;
+
 
         function init() {
+            vm.page = PageService.findPageById(vm.pageId);
         }
         init();
 
-        function login(user) {
-            var user = UserService.findUserByCredentials(user.username, user.password);
-            if(user) {
-                $location.url("/user/"+user._id);
+        function updatePage(page) {
+            var pg = PageService.updatePage(vm.pageId, page);
+            if (pg == null) {
+                vm.error = "Unable to update Page. Please try again";
             } else {
-                vm.error = "User not found";
+                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
             }
+        }
+
+        function deletePage(page) {
+            PageService.deletePage(vm.pageId);
+            $location.url("/user/" + vm.userId + "/website/"+vm.websiteId+"/page");
         }
     }
 })();

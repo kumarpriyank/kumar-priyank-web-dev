@@ -3,23 +3,21 @@
         .module("WebAppMaker")
         .controller("PageListController", pageListController);
 
-    function pageListController($location, UserService) {
+    function pageListController($routeParams, $location, PageService) {
         var vm = this;
+        var uid = $routeParams["uid"];
+        vm.userId = uid;
+        vm.websiteId = $routeParams["wid"];
 
-        // event handlers
-        vm.login = login;
+        vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
+
+        // Event handlers for handling the events
 
         function init() {
-        }
-        init();
-
-        function login(user) {
-            var user = UserService.findUserByCredentials(user.username, user.password);
-            if(user) {
-                $location.url("/user/"+user._id);
-            } else {
-                vm.error = "User not found";
+            if(vm.pages.length == 0) {
+                vm.error = "No pages to Display";
             }
         }
+        init();
     }
 })();

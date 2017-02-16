@@ -5,9 +5,12 @@
 
     function PageService() {
         var pages = [
-            {_id: "321", name: "Post 1", websiteId: "456", description: "Lorem" },
-            {_id: "432", name: "Post 2",  websiteId: "456", description: "Lorem" },
-            {_id: "543", name: "Post 3",  websiteId: "456", description: "Lorem" }
+            {_id: "324", name: "Post 11", websiteId: "123", description: "Lorem Ipsum" },
+            {_id: "322", name: "Post 12", websiteId: "123", description: "Lorem Ipsum" },
+            {_id: "323", name: "Post 13", websiteId: "123", description: "Lorem Ipsum" },
+            {_id: "321", name: "Post 1", websiteId: "456", description: "Lorem Ipsum" },
+            {_id: "432", name: "Post 2",  websiteId: "456", description: "Lorem Ipsum" },
+            {_id: "543", name: "Post 3",  websiteId: "456", description: "Lorem Ipsum" }
         ];
 
         var api = {
@@ -22,8 +25,8 @@
         // Creating a Page
         function createPage(websiteId, page) {
             page.websiteId=websiteId;
+            page._id = (new Date()).getTime();
             pages.push(page);
-            pages.push(newPage);
         }
 
 
@@ -42,7 +45,7 @@
         function findPageById(pageId) {
             for (var p in pages) {
                 if( pages[p]._id == pageId)
-                    return pages[p];
+                    return angular.copy(pages[p]);
             }
             return null;
         }
@@ -55,8 +58,10 @@
                     pages[p].name = page.name;
                     pages[p].websiteId = page.websiteId;
                     pages[p].description = page.description;
+                    return angular.copy(pages[p]);
                 }
             }
+            return null;
         }
 
         // Delete the Page
