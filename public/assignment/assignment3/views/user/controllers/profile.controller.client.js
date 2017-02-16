@@ -18,13 +18,16 @@
         init();
 
         function update(user) {
-            var user = UserService.updateUser(userId, user);
-            if (user == null) {
+            if (user.email == undefined || user.firstName == undefined || user.lastName == undefined) {
                 vm.error = "Unable to Update User Details";
             } else {
-                vm.message = "User Successfully Updated";
+                var user = UserService.updateUser(userId, user);
+                if (user == null) {
+                    vm.error = "Unable to Update User Details";
+                } else {
+                    vm.message = "User Successfully Updated";
+                }
             }
-
         }
 
     }
