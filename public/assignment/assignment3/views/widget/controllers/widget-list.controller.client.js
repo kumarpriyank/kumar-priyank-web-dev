@@ -3,7 +3,7 @@
         .module("WebAppMaker")
         .controller("WidgetListController", widgetListController);
 
-    function WidgetListController($sce, $routeParams, WidgetService) {
+    function widgetListController($sce, $routeParams, WidgetService) {
         var vm = this;
         vm.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
         vm.getTrustedHtml = getTrustedHtml;
@@ -11,7 +11,15 @@
         vm.userId = $routeParams.uid;
         vm.websiteId = $routeParams.wid;
         vm.pageId = $routeParams.pid;
-        vm.widgets = WidgetService.findAllWidgets(vm.pageId);
+
+
+        function init() {
+            vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
+            if(vm.widgets.length == 0) {
+                vm.error = "No widgets found for this Website";
+            }
+        }
+        init();
 
         function getWidgetTemplateUrl(widgetType) {
             var url = 'views/widget/templates/widget-'+widgetType+'.view.client.html';

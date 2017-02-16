@@ -11,7 +11,10 @@
             {_id: "456", widgetType: "HTML", pageId: "321", text: "<p> Lorem Ipsum</p>" },
             {_id: "567", widgetType: "HEADER", pageId: "321", size:"4", text: "Lorem Ipsum" },
             {_id: "678", widgetType: "YOUTUBE", pageId: "321", width:"100%", url: "http://youtube.com/AM2Ivdi9c4E" },
-            {_id: "789", widgetType: "HTML", pageId: "321", text: "<p>Lorem Ipsum</p>" }
+            {_id: "789", widgetType: "HTML", pageId: "321", text: "<p>Lorem Ipsum</p>" },
+            {_id: "234", widgetType: "HEADER", pageId: "324", size:"4", text: "Loren Ipsum" },
+            {_id: "345", widgetType: "IMAGE", pageId: "324", width:"100%", url: "http://lorempixel.com/400/200/" },
+            {_id: "456", widgetType: "HTML", pageId: "324", text: "<p> Lorem Ipsum</p>" }
         ];
 
         var api = {
@@ -31,18 +34,19 @@
 
         // Find Widget by Page
         function findWidgetsByPageId(pageId) {
+            var wig = [];
             for (var wi in widgets) {
                 if( widgets[wi].pageId == pageId)
-                    return widgets[wi];
+                    wig.push(widgets[wi]);
             }
-            return null;
+            return wig;
         }
 
         // Find Widget by Widget id
         function findWidgetById(widgetId) {
             for (var wi in widgets) {
                 if( widgets[wi]._id == widgetId)
-                    return widget[wi];
+                    return angular.copy(widget[wi]);
             }
             return null;
         }
@@ -53,8 +57,10 @@
             for(var wi in widgets) {
                 if( widgets[wi]._id == widgetId ) {
                     widgets[wi] = widget;
+                    return angular.copy(widgets[wi]);
                 }
             }
+            return null;
         }
 
         // Delete the Widget
