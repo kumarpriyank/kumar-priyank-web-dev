@@ -1,0 +1,94 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <!-- Specifying that we are using the grid system of BootStrap by row-->
+  <div class="container-fluid row">
+    <!-- Section Not Visible for Extra Small Devices - < 768px-->
+    <div class="col-xs-4 hidden-xs">
+      <ul class="nav navbar-nav">
+        <li>
+          <a class="navbar-font" href="../website/website-list.html"> <span class="glyphicon glyphicon-chevron-left"> </span> </a>
+        </li>
+      </ul>
+      <!-- ul class="nav navbar-nav navbar-header"-->
+      <ul class="nav navbar-nav">
+        <li>
+          <a class="navbar-brand">Websites</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right pull-right">
+        <li>
+          <a class="navbar-font" href="#"> <span class="glyphicon glyphicon-plus"> </span> </a>
+        </li>
+      </ul>
+    </div>
+    <!-- Section Visible Always so need to have either 8 grids or 12 grids-->
+    <div class="col-xs-12 col-sm-8">
+      <ul class="nav navbar-nav">
+        <li>
+          <a class="navbar-font visible-xs" href="../website/website-list.html"> <span class="glyphicon glyphicon-chevron-left"> </span> </a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav">
+        <li>
+          <a class="navbar-brand">New Website</a>
+        </li>
+      </ul>
+      <ul class="navbar-text pull-right">
+        <li class="hide-bullet">
+          <!--btn btn-new-website-->
+          <a class="navbar-font" href="../website/website-list.html"> <span class="glyphicon glyphicon-ok"> </span> </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- Navigation Bar Ended-->
+<!-- Start code for the body of website list for small, medium and large windows-->
+<div class="col-xs-4 hidden-xs site-list-scroll-overflow-y">
+  <div class="container-fluid row">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <a href="../page/page-list.html"> Address Book App </a>
+        <a href="../website/website-edit.html" class="pull-right"> <span class="glyphicon glyphicon-cog"></span> </a>
+      </li>
+      <li class="list-group-item">
+        <a href="../page/page-list.html"> Blogger </a>
+        <a href="../website/website-edit.html" class="pull-right"> <span class="glyphicon glyphicon-cog"></span> </a>
+      </li>
+      <li class="list-group-item">
+        <a href="../page/page-list.html"> Blogger App </a>
+        <a href="../website/website-edit.html" class="pull-right"> <span class="glyphicon glyphicon-cog"></span> </a>
+      </li>
+      <li class="list-group-item">
+        <a href="../page/page-list.html"> Script Testing App </a>
+        <a href="../website/website-edit.html" class="pull-right"> <span class="glyphicon glyphicon-cog"></span> </a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- End code for the body of website list for small, medium and large windows-->
+
+<!-- Start code for the new website content section-->
+<div class="col-xs-12 col-sm-8">
+  <form class="padding-left-12" name="newWebsite" id="newWebsite" novalidate>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" placeholder="name" name="name" required/>
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea class="form-control" rows="6" id="description" placeholder="description"></textarea>
+    </div>
+  </form>
+</div>
+<!-- End code for the new website content section-->
+
+<!-- Start code for the footer nav -->
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav navbar-right pull-right">
+      <li><a href="../user/profile.html" class="navbar-font"><span class="glyphicon glyphicon-user"></span></a></li>
+    </ul>
+  </div>
+</nav>
+<!-- End code for the footer nav-->

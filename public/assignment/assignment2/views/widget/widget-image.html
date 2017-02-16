@@ -1,59 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Widget Image</title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="../../css/style.css" rel="stylesheet"/>
-</head>
-<body>
-
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-      <ul class="nav navbar-nav">
-        <li><a class="navbar-font" href="../widget/widget-list.html"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
-      </ul>
-      <ul class="nav navbar-nav">
-        <li><a class="navbar-brand"> Widget Edit </a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right pull-right">
-        <li><a class="navbar-font" href="../widget/widget-list.html"><span class="glyphicon glyphicon-ok"></span></a></li>
-      </ul>
-    </div>
-  </nav>
+<nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
-      <form name="youtubeWidgetImage" novalidate>
-          <div class="form-group">
-              <label for="widgetname">Name</label>
-              <input type="text" class="form-control" id="widgetname" name="widgetname" placeholder="FullMetal" required>
-          </div>
-          <div class="form-group">
-              <label for="widgettext">Text</label>
-              <input type="text" class="form-control" id="widgettext" name="widgettext" placeholder="Final Transmutation" required>
-          </div>
-          <div class="form-group">
-              <label for="widgetsize">URL</label>
-              <input type="url" class="form-control" id="widgeturl" name="widgeturl" placeholder="http://www.google.com" required>
-          </div>
-          <div class="form-group">
-              <label for="widgetwidth">Width</label>
-              <input type="text" class="form-control" id="widgetwidth" name="widgetwidth" placeholder="100%" required>
-          </div>
-          <div class="form-group">
-              <label for="widgetupload">Upload</label>
-              <input type="file" class="form-control btn-file" hidden value="Choose File"/>
-          </div>
-          <button class="btn btn-primary btn-block">Upload Image</button>
-          <a class="btn btn-danger btn-block" href="../widget/widget-list.html">Delete</a>
-      </form>
+    <ul class="nav navbar-nav">
+      <li><a class="navbar-font" href="../widget/widget-list.html"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+    </ul>
+    <ul class="nav navbar-nav">
+      <li><a class="navbar-brand"> Widget Edit </a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right pull-right">
+      <li><a class="navbar-font" href="../widget/widget-list.html"><span class="glyphicon glyphicon-ok"></span></a></li>
+    </ul>
+  </div>
+</nav>
+<div class="container-fluid">
+  <form name="youtubeWidgetImage" novalidate>
+    <div class="form-group">
+      <label for="widgetname">Name</label>
+      <input type="text" class="form-control" id="widgetname" name="widgetname" placeholder="FullMetal" required>
     </div>
-  <nav class="navbar navbar-inverse navbar-fixed-bottom">
-    <div class="container-fluid">
-      <ul class="nav navbar-nav navbar-right pull-right">
-        <li><a href="../user/profile.html" class="navbar-font"><span class="glyphicon glyphicon-user"></span></a></li>
-      </ul>
+    <div class="form-group">
+      <label for="widgettext">Text</label>
+      <input type="text" class="form-control" id="widgettext" name="widgettext" placeholder="Final Transmutation" required>
     </div>
-  </nav>
-</body>
-</html>
+    <div class="form-group">
+      <label for="widgetsize">URL</label>
+      <input type="url" class="form-control" id="widgeturl" name="widgeturl" placeholder="http://www.google.com" required>
+    </div>
+    <div class="form-group">
+      <label for="widgetwidth">Width</label>
+      <input type="text" class="form-control" id="widgetwidth" name="widgetwidth" placeholder="100%" required>
+    </div>
+    <div class="form-group">
+      <label for="widgetupload">Upload</label>
+      <input type="file" class="form-control btn-file" hidden value="Choose File"/>
+    </div>
+    <button class="btn btn-primary btn-block">Upload Image</button>
+    <a class="btn btn-danger btn-block" href="../widget/widget-list.html">Delete</a>
+  </form>
+</div>
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav navbar-right pull-right">
+      <li><a href="../user/profile.html" class="navbar-font"><span class="glyphicon glyphicon-user"></span></a></li>
+    </ul>
+  </div>
+</nav>

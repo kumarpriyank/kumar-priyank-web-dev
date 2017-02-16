@@ -1,0 +1,56 @@
+<div class="container-fluid">
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li><a class="navbar-brand">Profile</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right pull-right">
+      <li>
+        <a ng-click="model.update(model.user)"
+           class="navbar-font">
+          <span class="glyphicon glyphicon-plus"></span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container-fluid">
+  <form name="profileForm" id="profileForm" novalidate>
+
+    <div ng-show="model.error" class="alert alert-danger" role="alert">
+      {{model.error}}
+    </div>
+    <div ng-show="model.message" class="alert alert-success" role="alert">
+      {{model.message}}
+    </div>
+
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input ng-model="model.user.username" type="text" class="form-control" id="username" placeholder="username" name="username" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input ng-model="model.user.email" type="email" class="form-control" id="email" placeholder="username@domain.com">
+    </div>
+    <div class="form-group">
+      <label for="first-name">First Name</label>
+      <input ng-model="model.user.firstName" type="text" class="form-control" id="first-name" placeholder="Bradley">
+    </div>
+    <div class="form-group">
+      <label for="last-name">Last Name</label>
+      <input ng-model="model.user.lastName" type="text" class="form-control" id="last-name" placeholder="Cooper">
+    </div>
+
+    <a ng-click="model.showWebsites()" href="../website/website-list.html"
+       class="btn btn-primary btn-block">Websites</a>
+    <a href="#/login" class="btn btn-danger btn-block">Logout</a>
+  </form>
+</div>
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav navbar-right pull-right">
+      <li><a href="#" class="navbar-font"><span class="glyphicon glyphicon-user"></span></a></li>
+    </ul>
+  </div>
+</nav>
+</div>
