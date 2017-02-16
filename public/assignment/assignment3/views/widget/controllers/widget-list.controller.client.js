@@ -3,23 +3,30 @@
         .module("WebAppMaker")
         .controller("WidgetListController", widgetListController);
 
-    function widgetListController($location, UserService) {
+    function WidgetListController($sce, $routeParams, WidgetService) {
         var vm = this;
+        vm.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
+        vm.getTrustedHtml = getTrustedHtml;
+        vm.getWidgetTemplateUrl = getWidgetTemplateUrl;
+        vm.userId = $routeParams.uid;
+        vm.websiteId = $routeParams.wid;
+        vm.pageId = $routeParams.pid;
+        vm.widgets = WidgetService.findAllWidgets(vm.pageId);
 
-        // event handlers
-        vm.login = login;
-
-        function init() {
+        function getWidgetTemplateUrl(widgetType) {
+            var url = 'views/widget/templates/widget-'+widgetType+'.view.client.html';
+            return url;
         }
-        init();
 
-        function login(user) {
-            var user = UserService.findUserByCredentials(user.username, user.password);
-            if(user) {
-                $location.url("/user/"+user._id);
-            } else {
-                vm.error = "User not found";
-            }
+        function getTrustedHtml(html) {
+            return $sce.trustAsHtml(html);
+        }
+
+        function getYouTubeEmbedUrl(widgetUrl) {
+            var urlParts = widgetUrl.split('/');
+            var id = urlParts[urlParts.length - 1];
+            var url = "https://www.youtube.com/embed/"+id;
+            return $sce.trustAsResourceUrl(url);
         }
     }
 })();

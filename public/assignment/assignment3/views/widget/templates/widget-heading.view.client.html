@@ -1,49 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Widget Heading</title>
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="../../css/style.css" rel="stylesheet"/>
-</head>
-<body>
-
-  <nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-      <ul class="nav navbar-nav">
-        <li><a class="navbar-font" href="../widget/widget-list.html"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
-      </ul>
-      <ul class="nav navbar-nav">
-        <li><a class="navbar-brand"> Widget Edit </a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right pull-right">
-        <li><a class="navbar-font" href="../widget/widget-list.html"><span class="glyphicon glyphicon-ok"></span></a></li>
-      </ul>
-    </div>
-  </nav>
-  <div class="container-fluid">
-      <form name="newPage" novalidate>
-          <div class="form-group">
-              <label for="widgetname">Name</label>
-              <input type="text" class="form-control" id="widgetname" name="widgetname" placeholder="Label" required>
-          </div>
-          <div class="form-group">
-              <label for="widgettitle">Text</label>
-              <input type="text" class="form-control" id="widgettitle" name="widgettitle" placeholder="Flying Cretaceous Monster Ate Dinosaurs For Breakfast" required>
-          </div>
-          <div class="form-group">
-              <label for="widgetsize">Text</label>
-              <input type="text" class="form-control" id="widgetsize" name="widgetsize" placeholder="3" required>
-          </div>
-            <a class="btn btn-danger btn-block" href="../widget/widget-list.html">Delete</a>
-      </form>
-  <nav class="navbar navbar-inverse navbar-fixed-bottom">
-    <div class="container-fluid">
-      <ul class="nav navbar-nav navbar-right pull-right">
-        <li><a href="../user/profile.html" class="navbar-font"><span class="glyphicon glyphicon-user"></span></a></li>
-      </ul>
-    </div>
-  </nav>
-</body>
-</html>
+<div ng-switch="widget.size">
+    <h1 ng-switch-when="1">{{widget.text}} {{widget.size}}</h1>
+    <h2 ng-switch-when="2">{{widget.text}} {{widget.size}}</h2>
+    <h3 ng-switch-when="3">{{widget.text}} {{widget.size}}</h3>
+    <h4 ng-switch-when="4">{{widget.text}} {{widget.size}}</h4>
+    <h5 ng-switch-when="5">{{widget.text}} {{widget.size}}</h5>
+    <h6 ng-switch-when="6">{{widget.text}} {{widget.size}}</h6>
+</div>
