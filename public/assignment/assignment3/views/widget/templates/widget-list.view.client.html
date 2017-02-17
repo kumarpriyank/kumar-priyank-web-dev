@@ -9,7 +9,7 @@
             <li><a class="navbar-brand"> Widget List </a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right pull-right">
-            <li><a class="navbar-font" href="../widget/widget-list.html"><span class="glyphicon glyphicon-ok"></span></a></li>
+            <li><a class="navbar-font" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new"><span class="glyphicon glyphicon-ok"></span></a></li>
         </ul>
     </div>
 </nav>
@@ -27,8 +27,7 @@
             <span class="glyphicon glyphicon-align-justify"></span>
         </div>
 
-        <!--<ng-include src="model.getWidgetTemplateUrl(widget.widgetType)"></ng-include>-->
-
+        <!--
         <div ng-switch="widget.widgetType">
             <div ng-switch-when="HEADER">
                 <ng-include src="'views/widget/templates/widget-HEADER.view.client.html'"></ng-include>
@@ -43,6 +42,8 @@
                 <ng-include src="'views/widget/templates/widget-YOUTUBE.view.client.html'"></ng-include>
             </div>
         </div>
+        -->
+        <ng-include src="model.getWidgetTemplateUrl(widget.widgetType)"></ng-include>
     </div>
 </div>
 

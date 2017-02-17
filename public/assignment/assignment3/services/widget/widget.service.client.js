@@ -7,14 +7,15 @@
         var widgets = [
             {_id: "123", widgetType: "HEADER", pageId: "321", size:"2", text: "GIZMODO" },
             {_id: "234", widgetType: "HEADER", pageId: "321", size:"4", text: "Loren Ipsum" },
-            {_id: "345", widgetType: "IMAGE", pageId: "321", width:"100%", url: "http://lorempixel.com/400/200/" },
+            {_id: "345", widgetType: "IMAGE", text:"Image1",pageId: "321", width:"100%", url: "http://lorempixel.com/400/200/" },
             {_id: "456", widgetType: "HTML", pageId: "321", text: "<p> Lorem Ipsum</p>" },
             {_id: "567", widgetType: "HEADER", pageId: "321", size:"4", text: "Lorem Ipsum" },
             {_id: "678", widgetType: "YOUTUBE", pageId: "321", width:"100%", url: "http://youtube.com/AM2Ivdi9c4E" },
             {_id: "789", widgetType: "HTML", pageId: "321", text: "<p>Lorem Ipsum</p>" },
             {_id: "234", widgetType: "HEADER", pageId: "324", size:"4", text: "Loren Ipsum" },
-            {_id: "345", widgetType: "IMAGE", pageId: "324", width:"100%", url: "http://lorempixel.com/400/200/" },
-            {_id: "456", widgetType: "HTML", pageId: "324", text: "<p> Lorem Ipsum</p>" }
+            {_id: "345", widgetType: "IMAGE", text:"Image1", pageId: "324", width:"100%", url: "http://lorempixel.com/400/200/" },
+            {_id: "456", widgetType: "HTML", pageId: "324", text: "<p> Lorem Ipsum</p>" },
+            {_id: "679", widgetType: "YOUTUBE", pageId: "324", width:"100%", url: "http://youtube.com/AM2Ivdi9c4E" }
         ];
 
         var api = {
@@ -46,7 +47,7 @@
         function findWidgetById(widgetId) {
             for (var wi in widgets) {
                 if( widgets[wi]._id == widgetId)
-                    return angular.copy(widget[wi]);
+                    return angular.copy(widgets[wi]);
             }
             return null;
         }
@@ -56,7 +57,27 @@
         function updateWidget(widgetId, widget) {
             for(var wi in widgets) {
                 if( widgets[wi]._id == widgetId ) {
-                    widgets[wi] = widget;
+                    if(widgets[wi].widgetType === "HEADER"){
+
+                        widgets[wi].text = widget.text;
+                        widgets[wi].size = widget.size;
+                        widgets[wi].pageId = widget.pageId;
+
+                    }
+                    else if (widgets[wi].widgetType === "HTML") {
+
+                        widgets[wi].pageId = widget.pageId;
+                        widgets[wi].text = widget.text;
+
+                    } else if (widgets[wi].widgetType === "IMAGE" || widgets[wi].widgetType === "YOUTUBE"){
+
+                        widgets[wi].name = widget.name;
+                        widgets[wi].text = widget.text;
+                        widgets[wi].url = widget.url;
+                        widgets[wi].width = widget.width;
+                        widgets[wi].pageId = widget.pageId;
+
+                    }
                     return angular.copy(widgets[wi]);
                 }
             }

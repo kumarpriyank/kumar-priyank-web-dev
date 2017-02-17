@@ -1,0 +1,48 @@
+<div class="container-fluid site-list-scroll-overflow-y">
+    <form name="youtubeWidgetYoutube" novalidate>
+
+        <div class="form-group">
+            <h2>Edit YouTube</h2>
+
+            <label for="widgetname">Name</label>
+            <input ng-model="model.widget.name"
+                   type="text"
+                   class="form-control"
+                   id="widgetname"
+                   name="widgetname"
+                   placeholder="Label" required>
+        </div>
+
+        <div class="form-group">
+            <label for="widgettext">Text</label>
+            <input ng-model="model.widget.text"
+                   type="text"
+                   class="form-control"
+                   id="widgettext"
+                   name="widgettext"
+                   placeholder="Sample Text" required>
+        </div>
+
+        <div class="form-group">
+            <label for="widgeturl">URL</label>
+            <input  ng-model="model.widget.url"
+                    type="url"
+                    class="form-control"
+                    id="widgeturl"
+                    name="widgeturl"
+                    placeholder="http://www.google.com" required>
+        </div>
+
+        <div class="form-group">
+            <label for="widgetwidth">Width</label>
+            <input ng-model="model.widget.width"
+                   type="text"
+                   class="form-control"
+                   id="widgetwidth"
+                   name="widgetwidth"
+                   placeholder="3" required>
+        </div>
+        <a class="btn btn-danger btn-block"
+           ng-click="model.deleteWidget()">Delete</a>
+    </form>
+</div>
