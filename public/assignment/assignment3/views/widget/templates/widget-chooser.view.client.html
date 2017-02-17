@@ -1,22 +1,36 @@
  <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
       <ul class="nav navbar-nav">
-        <li><a class="navbar-font" href="../widget/widget-list.html"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+        <li><a class="navbar-font" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
       </ul>
       <ul class="nav navbar-nav">
         <li><a class="navbar-brand">Choose Widget</a></li>
       </ul>
     </div>
   </nav>
-
-  <div class="container-fluid"
-       ng-include="model.getEditorTemplateUrl(model.widget.widgetType)">
+   <!--
+  <div class="container-fluid" ng-include="model.getEditorTemplateUrl(model.widget.widgetType)">
   </div>
+  -->
+ <div class="container-fluid">
+   <ul class="list-group">
+     <li class="list-group-item"><a ng-click="model.addWidget('HEADER')">Header</a></li>
+     <li class="list-group-item"><a>Label</a></li>
+     <li class="list-group-item"><a ng-click="model.addWidget('HTML')">HTML</a></li>
+     <li class="list-group-item"><a ng-click="model.addWidget('TEXT')">Text Input</a></li>
+     <li class="list-group-item"><a>Link</a></li>
+     <li class="list-group-item"><a>Button</a></li>
+     <li class="list-group-item"><a ng-click="model.addWidget('IMAGE')">Image</a></li>
+     <li class="list-group-item"><a ng-click="model.addWidget('YOUTUBE')">YouTube</a></li>
+     <li class="list-group-item"><a>Data Table</a></li>
+     <li class="list-group-item"><a>Repeater</a></li>
+   </ul>
+ </div>
 
   <nav class="navbar navbar-inverse navbar-fixed-bottom">
     <div class="container-fluid">
       <ul class="nav navbar-nav navbar-right pull-right">
-        <li><a href="../user/profile.html" class="navbar-font"><span class="glyphicon glyphicon-user"></span></a></li>
+        <li><a href="#/user/{{model.userId}}" class="navbar-font"><span class="glyphicon glyphicon-user"></span></a></li>
       </ul>
     </div>
   </nav>

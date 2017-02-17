@@ -30,7 +30,8 @@
         // Creating a Widget
         function createWidget(pageId, widget) {
             widget.pageId=pageId;
-            widget.push(widget);
+            widget._id = (new Date()).getTime();
+            widgets.push(widget);
         }
 
         // Find Widget by Page

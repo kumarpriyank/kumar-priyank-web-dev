@@ -12,7 +12,6 @@
         vm.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
         vm.getTrustedHtml = getTrustedHtml;
         vm.getWidgetTemplateUrl = getWidgetTemplateUrl;
-        console.log(vm.pageId);
 
         function init() {
             vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
