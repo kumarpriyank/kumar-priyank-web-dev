@@ -21,6 +21,7 @@
                 vm.error = "Unable to Update User Details";
             } else {
                 var user = UserService.updateUser(userId, user);
+
                 if (user == null) {
                     vm.error = "Unable to Update User Details";
                 } else {

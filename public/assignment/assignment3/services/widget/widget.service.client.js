@@ -85,10 +85,12 @@
 
         // Delete the Widget
         function deleteWidget(widgetId) {
+            var x=0;
             for(var wi in widgets) {
                 if (widgets[wi]._id == widgetId) {
-                    widgets.splice(widgets.indexOf(wi), 1);
+                    widgets.splice(x, 1);
                 }
+                x++;
             }
         }
     }

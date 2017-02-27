@@ -24,7 +24,7 @@
                 controllerAs: "model"})
             .when("/user/:uid/website/new", {
                 templateUrl: "views/website/templates/website-new.view.client.html",
-                controller: "NewWebsiteController",
+                controller: "WebsiteController",
                 controllerAs: "model"})
             .when("/user/:uid/website/:wid", {
                 templateUrl: "views/website/templates/website-edit.view.client.html",
@@ -48,7 +48,7 @@
                 controllerAs: "model"})
             .when("/user/:uid/website/:wid/page/:pid/widget/new", {
                 templateUrl: "views/widget/templates/widget-chooser.view.client.html",
-                controller: "NewWebsiteController",
+                controller: "NewWidgetController",
                 controllerAs: "model"})
             .when("/user/:uid/website/:wid/page/:pid/widget/:wgid", {
                 templateUrl: "views/widget/templates/widget-edit.view.client.html",

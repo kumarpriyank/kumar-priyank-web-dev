@@ -1,9 +1,9 @@
 (function () {
     angular
         .module("WebAppMaker")
-        .controller("NewWebsiteController", newWebsiteController);
+        .controller("WebsiteController", websiteController);
 
-    function newWebsiteController($routeParams, $location, WebsiteService) {
+    function websiteController($routeParams, $location, WebsiteService) {
         var vm = this;
         vm.userId = $routeParams["uid"];
 
@@ -15,7 +15,7 @@
         }
         init();
 
-        function createWebsite (website) {
+        function createWebsite(website) {
             WebsiteService.createWebsite(vm.userId, website);
             $location.url("/user/"+vm.userId+"/website");
         };

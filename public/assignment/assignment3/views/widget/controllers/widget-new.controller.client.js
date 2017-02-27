@@ -1,9 +1,9 @@
 (function () {
     angular
         .module("WebAppMaker")
-        .controller("NewWebsiteController", newWebsiteController);
+        .controller("NewWidgetController", newWidgetController);
 
-    function newWebsiteController($routeParams, $location, WidgetService) {
+    function newWidgetController($routeParams, $location, WidgetService) {
         var vm = this;
         vm.userId = $routeParams.uid;
         vm.websiteId = $routeParams.wid;

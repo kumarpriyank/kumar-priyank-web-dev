@@ -18,7 +18,6 @@
         init();
 
         function login(user) {
-
                 var user = UserService.findUserByCredentials(user.username, user.password);
                 if(user) {
                     $location.url("/user/"+user._id);
