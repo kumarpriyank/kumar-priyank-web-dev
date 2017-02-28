@@ -22,6 +22,11 @@
 
 
   <div class="container-fluid site-list-scroll-overflow-y">
+
+    <div ng-show="model.error" class="alert alert-danger" role="alert">
+      {{model.error}}
+    </div>
+
     <ul class="list-group">
       <li ng-repeat="website in model.websites" class="list-group-item">
         <div class="row">

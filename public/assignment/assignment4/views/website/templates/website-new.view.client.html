@@ -2,6 +2,11 @@
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <!-- Specifying that we are using the grid system of BootStrap by row-->
     <div class="container-fluid row">
+
+      <div ng-show="model.error" class="alert alert-danger" role="alert">
+        {{model.error}}
+      </div>
+
       <!-- Section Not Visible for Extra Small Devices - < 768px-->
       <div class="col-xs-4 hidden-xs">
         <ul class="nav navbar-nav">

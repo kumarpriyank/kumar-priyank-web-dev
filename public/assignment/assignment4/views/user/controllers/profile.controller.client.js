@@ -16,7 +16,7 @@
         // Init function - Function that will be called every time profileController is instantiated.
         function init() {
             var promise = UserService.findUserById(userId);
-            promise.success(function (user){ console.log(user); vm.user = user; })
+            promise.success(function (user){ vm.user = user; })
                 .error(function (error) { vm.error = "Http Error Occured"; });
         } init();
 

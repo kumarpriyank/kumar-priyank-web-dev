@@ -14,23 +14,28 @@
 
 
         function init() {
-            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
-            vm.website = WebsiteService.findWebsiteById(vm.websiteId);
-        }
-        init();
+            WebsiteService.findWebsitesByUser(vm.userId).success(function (websites) { vm.websites=websites; })
+                .error(function (error) { console.log("Server error"); });
+
+            WebsiteService.findWebsiteById(vm.websiteId).success(function (website) {
+                    vm.website=angular.copy(website);
+                })
+        } init();
+
+
 
         function updateWebsite(website) {
-            var website = WebsiteService.updateWebsite(vm.websiteId, website);
-            if (website == null) {
-                vm.error = "Unable to update website. Please try again";
-            } else {
-                $location.url("/user/" + vm.userId + "/website");
-            }
-        };
+
+            WebsiteService.updateWebsite(vm.websiteId,website).success(function () { $location.url("/user/" + vm.userId+"/website"); })
+                .error(function () { console.log("Server Error"); });
+        }
 
         function deleteWebsite(website) {
-            WebsiteService.deleteWebsite(vm.websiteId);
-            $location.url("/user/" + vm.userId + "/website");
-        };
+
+            WebsiteService.deleteWebsite(vm.websiteId).success(function (deleted) {
+                init();
+                $location.url("/user/" + vm.userId +"/website"); })
+                .error(function () { console.log("Server Error"); });
+        }
     }
 })();

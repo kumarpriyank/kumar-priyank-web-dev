@@ -23,7 +23,6 @@
         {
             var promise = UserService.findUserByCredentials(user.username, user.password);
             promise.success(function (user) {
-                console.log(user);
                 if(user !== "0") {
                     $location.url("/user/"+user._id);
                 } else {
