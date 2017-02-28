@@ -28,7 +28,7 @@
             vm.widget = {};
             vm.widget._id = -1;
             vm.widget.widgetType = type;
-
+            
             WidgetService.createWidget(vm.pageId,vm.widget);
 
             $location.url("/user/" + vm.userId + "/website/" + vm.websiteId +

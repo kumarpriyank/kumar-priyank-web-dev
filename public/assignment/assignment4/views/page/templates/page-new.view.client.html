@@ -1,0 +1,44 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li><a class="navbar-font" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+    </ul>
+    <ul class="nav navbar-nav">
+      <li><a class="navbar-brand"> New Pages</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right pull-right">
+      <li><a class="navbar-font"
+             ng-click="model.createPage(page)">
+             <span class="glyphicon glyphicon-ok"></span></a></li>
+    </ul>
+  </div>
+</nav>
+<div class="container-fluid">
+  <form name="newPage" novalidate>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input ng-model="page.name"
+             type="text"
+             class="form-control"
+             id="name"
+             name="name"
+             placeholder="Page Name" required>
+    </div>
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input ng-model="page.description"
+             type="text"
+             class="form-control"
+             id="title"
+             name="title"
+             placeholder="Title" required>
+    </div>
+  </form>
+</div>
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav navbar-right pull-right">
+      <li><a href="#/user/{{model.userId}}" class="navbar-font"><span class="glyphicon glyphicon-user"></span></a></li>
+    </ul>
+  </div>
+</nav>
