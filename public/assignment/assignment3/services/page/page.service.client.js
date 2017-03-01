@@ -66,10 +66,12 @@
 
         // Delete the Page
         function deletePage(pageId) {
+            var x=0;
             for(var p in pages) {
                 if (pages[p]._id == pageId) {
-                    pages.splice(pages.indexOf(p), 1);
+                    pages.splice(x, 1);
                 }
+                x++;
             }
         }
     }

@@ -7,10 +7,10 @@ module.exports = function(app) {
      *    Defining the list of websites
      */
     var websites = [
-        {_id: "1233", name: "Facebook", developerId: "456", description: "Lorem 1233" },
+        {_id: "123", name: "Facebook", developerId: "456", description: "Lorem 1233" },
         {_id: "234", name: "Tweeter",  developerId: "456", description: "Lorem 234" },
         {_id: "456", name: "Gizmodo",  developerId: "456", description: "Lorem 456" },
-        {_id: "123", name: "Tic Tac Toe", developerId: "123", description: "Lorem 123" },
+        {_id: "1233", name: "Tic Tac Toe", developerId: "123", description: "Lorem 123" },
         {_id: "1234", name: "Checkers", developerId: "123", description: "Lorem 1234" },
         {_id: "1235", name: "Chess", developerId: "234", description: "Lorem 1235" },
         {_id: "124", name: "Checkers", developerId: "234", description: "Lorem Ipsum 124" },

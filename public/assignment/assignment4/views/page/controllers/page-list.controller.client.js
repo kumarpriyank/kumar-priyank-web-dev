@@ -4,20 +4,15 @@
         .controller("PageListController", pageListController);
 
     function pageListController($routeParams, $location, PageService) {
+
         var vm = this;
         var uid = $routeParams["uid"];
         vm.userId = uid;
         vm.websiteId = $routeParams["wid"];
 
-        vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
-
-        // Event handlers for handling the events
-
         function init() {
-            if(vm.pages.length == 0) {
-                vm.error = "No pages to Display";
-            }
-        }
-        init();
+            PageService.findPageByWebsiteId(vm.websiteId).success(function (pages) { vm.pages = pages; })
+                .error(function (error) { vm.error="No pages to Display"; });
+        } init();
     }
 })();

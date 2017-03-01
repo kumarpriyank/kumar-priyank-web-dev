@@ -15,22 +15,18 @@
 
 
         function init() {
-            vm.page = PageService.findPageById(vm.pageId);
-        }
-        init();
+            PageService.findPageById(vm.pageId).success(function (result) { vm.page=angular.copy(result); })
+                        .error(function (error) { vm.error="No pages to Display"; });
+        } init();
 
         function updatePage(page) {
-            var pg = PageService.updatePage(vm.pageId, page);
-            if (pg == null) {
-                vm.error = "Unable to update Page. Please try again";
-            } else {
-                $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page");
-            }
+            PageService.updatePage(vm.pageId,page).success(function (updatedPge) { $location.url("/user/"+  vm.userId +"/website/"+vm.websiteId +"/page"); })
+                        .error(function (error) { vm.error="Error Updating Page. Please try again."; });
         }
 
         function deletePage(page) {
-            PageService.deletePage(vm.pageId);
-            $location.url("/user/" + vm.userId + "/website/"+vm.websiteId+"/page");
+            PageService.deletePage(vm.pageId).success(function (deletedPages) { $location.url("/user/"+  vm.userId +"/website/"+vm.websiteId +"/page"); })
+                       .error(function (error) { vm.error="Error Deleting Page. Please try again."; });
         }
     }
 })();

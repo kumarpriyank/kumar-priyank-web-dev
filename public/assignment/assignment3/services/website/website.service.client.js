@@ -68,10 +68,13 @@
 
         // Delete the website
         function deleteWebsite(websiteId) {
+            var x=0;
             for(var w in websites) {
+
                 if (websites[w]._id == websiteId) {
-                    websites.splice(websites.indexOf(w), 1);
+                    websites.splice(x, 1);
                 }
+                x++;
             }
         }
     }

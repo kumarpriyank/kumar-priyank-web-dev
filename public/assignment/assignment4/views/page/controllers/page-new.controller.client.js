@@ -18,8 +18,8 @@
         init();
 
         function createPage (page) {
-            PageService.createPage(vm.websiteId, page);
-            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+            PageService.createPage(vm.websiteId,page).success(function (newPage) { $location.url("user/"+ vm.userId+ "/website/"+vm.websiteId +"/page"); })
+                .error(function (error) { vm.error = "Error occured while creating page."; });
         }
     }
 })();
