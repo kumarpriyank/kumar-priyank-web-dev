@@ -9,31 +9,27 @@
         vm.websiteId = $routeParams.wid;
         vm.pageId = $routeParams.pid;
 
-        vm.deleteWidget = deleteWidget;
         vm.addWidget = addWidget;
 
-        // Get all the widgets
+        // Initialize Functions
         function init() {
-            vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
-        }
-        init();
+        } init();
 
 
-        function deleteWidget() {
-            WidgetService.deleteWidget(vm.widgetId);
-            $location.url("/user/" + vm.userId + "/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
-        }
 
         function addWidget(type) {
-            vm.widget = {};
-            vm.widget._id = -1;
-            vm.widget.widgetType = type;
-            
-            WidgetService.createWidget(vm.pageId,vm.widget);
-
-            $location.url("/user/" + vm.userId + "/website/" + vm.websiteId +
-                "/page/" + vm.pageId + "/widget/" + vm.widget._id);
+            var widget = {};
+           // vm.widget._id = (new Date()).getTime()+"";
+            widget.widgetType = type;
+            WidgetService.createWidget(vm.pageId,widget).then(
+                    function(result){
+                        vm.widget = result.data;
+                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+vm.widget._id);
+                    },
+                    function(error){
+                        vm.error = "Unable to create a new widget";
+                    }
+                );
         }
-
     }
 })();

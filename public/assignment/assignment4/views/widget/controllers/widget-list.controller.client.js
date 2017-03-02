@@ -11,27 +11,21 @@
 
         vm.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
         vm.getTrustedHtml = getTrustedHtml;
-        vm.getWidgetTemplateUrl = getWidgetTemplateUrl;
+
 
         function init() {
-            vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
-            if(vm.widgets.length == 0) {
-                vm.error = "No widgets found for this Website";
-            }
-        }
-        init();
+            WidgetService.findWidgetsByPageId(vm.pageId).then(function(result){
+                vm.widgets = result.data;
+                $("#widgetList").sortable({ axis:"y" });  });
+        } init();
 
-        function getWidgetTemplateUrl(widgetType) {
-            var url = 'views/widget/templates/widget-'+widgetType+'.view.client.html';
-            return url;
+
+        function getTrustedHtml(widget) {
+            return $sce.trustAsHtml(widget.text);
         }
 
-        function getTrustedHtml(html) {
-            return $sce.trustAsHtml(html);
-        }
-
-        function getYouTubeEmbedUrl(widgetUrl) {
-            var urlParts = widgetUrl.split('/');
+        function getYouTubeEmbedUrl(widget) {
+            var urlParts = widget.url.split('/');
             var id = urlParts[urlParts.length - 1];
             var url = "https://www.youtube.com/embed/"+id;
             return $sce.trustAsResourceUrl(url);

@@ -1,45 +1,21 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container-fluid">
-        <ul class="nav navbar-nav">
-            <li><a class="navbar-font" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
-        </ul>
-        <ul class="nav navbar-nav">
-            <li><a class="navbar-brand"> Widget Edit </a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right pull-right">
-            <li><a class="navbar-font"
-                   ng-click="model.updateWidget(model.widget)"><span class="glyphicon glyphicon-ok"></span></a></li>
-        </ul>
+<div ng-switch="model.widget.widgetType">
+    <div ng-switch-when="HEADER">
+        <ng-include src="'views/widget/templates/widget-heading.view.client.html'"></ng-include>
     </div>
-</nav>
-
-<div class="container-fluid"
-     ng-include="model.getEditorTemplateUrl(model.widget.widgetType)">
-</div>
-
-<!--
-They clutter the dom as all of them will be there but will have property
-as Display None.
-<div ng-if="model.widget.widgetType === 'HEADER'">
-    <h1>Header Editor</h1>
-</div>
-
-<div ng-if="model.widget.widgetType === 'IMAGE'">
-    <h1>Image Editor</h1>
-</div>
-
-<div ng-if="model.widget.widgetType === 'HTML'">
-    <h1>HTML Editor</h1>
-</div>
-
-<div ng-if="model.widget.widgetType === 'YOUTUBE'">
-    <h1>YouTube Editor</h1>
-</div>
--->
-<nav class="navbar navbar-inverse navbar-fixed-bottom">
-    <div class="container-fluid">
-        <ul class="nav navbar-nav navbar-right pull-right">
-            <li><a href="#/user/{{model.userId}}" class="navbar-font"><span class="glyphicon glyphicon-user"></span></a></li>
-        </ul>
+    <div ng-switch-when="IMAGE">
+        <ng-include src="'views/widget/templates/widget-image.view.client.html'"></ng-include>
     </div>
-</nav>
+    <div ng-switch-when="YOUTUBE">
+        <ng-include src="'views/widget/templates/widget-youtube.view.client.html'"></ng-include>
+    </div>
+    <div ng-switch-when="HTML">
+        <ng-include src="'views/widget/templates/widget-html.view.client.html'"></ng-include>
+    </div>
+    <div ng-switch-default>
+        <div class="container">
+            <div class="alert alert-danger" role="alert">
+                Cannot edit the Widget
+            </div>
+        </div>
+    </div>
+</div>

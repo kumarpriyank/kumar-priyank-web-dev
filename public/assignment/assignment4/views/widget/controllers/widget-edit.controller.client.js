@@ -10,30 +10,28 @@
         vm.pageId = $routeParams.pid;
         vm.widgetId = $routeParams.wgid;
 
-        vm.getEditorTemplateUrl = getEditorTemplateUrl;
         vm.deleteWidget = deleteWidget;
         vm.updateWidget = updateWidget;
 
-        // Get all the widgets
+        // Get the widget with the widget id
         function init() {
-            vm.widget = WidgetService.findWidgetById(vm.widgetId);
-        }
-        init();
+            WidgetService.findWidgetById(vm.widgetId)
+                .then(function(response){
+                    vm.widget = response.data;
+                });
+        } init();
 
-        function getEditorTemplateUrl(type) {
-            return 'views/widget/editor/widget-'+type+'-editor.view.client.html';
-        }
+
 
         function deleteWidget() {
-            WidgetService.deleteWidget(vm.widgetId);
-            $location.url("/user/" + vm.userId + "/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
+            WidgetService.deleteWidget(vm.widgetId).then( function(result){ $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget"); },
+                    function(error){ vm.error = "Not able to delete the widget"; });
         }
 
         function updateWidget(widget) {
             widget.pageId = vm.pageId;
-            WidgetService.updateWidget(vm.widgetId, widget);
-            $location.url("/user/" + vm.userId + "/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
-
+            WidgetService.updateWidget(vm.widgetId,widget).success(function (result) { $location.url("/user/"+ vm.userId+ "/website/"+ vm.websiteId+"/page/" + vm.pageId+"/widget"); })
+                .error(function (error) { vm.error= "Error Updating widget"; });
         }
     }
 })();
