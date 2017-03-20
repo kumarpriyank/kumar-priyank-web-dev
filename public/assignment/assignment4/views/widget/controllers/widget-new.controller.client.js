@@ -19,7 +19,6 @@
 
         function addWidget(type) {
             var widget = {};
-           // vm.widget._id = (new Date()).getTime()+"";
             widget.widgetType = type;
             WidgetService.createWidget(vm.pageId,widget).then(
                     function(result){

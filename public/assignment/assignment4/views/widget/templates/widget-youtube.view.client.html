@@ -1,7 +1,9 @@
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <ul class="nav navbar-nav">
-            <li><a class="navbar-font" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+            <li><a class="navbar-font" ng-click="model.deleteWidget()">
+                   <!--href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">-->
+                <span class="glyphicon glyphicon-chevron-left"></span></a></li>
         </ul>
         <ul class="nav navbar-nav">
             <li><a class="navbar-brand"> Widget Edit </a></li>
