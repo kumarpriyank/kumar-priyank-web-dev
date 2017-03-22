@@ -80,7 +80,7 @@ module.exports = function(app, models) {
     function deletePage(req,res) {
         var pageId=req.params.pageId;
         pageModel.deletePage(pageId).then(
-            function (success) { res.send(200); },
+            function (success) { res.sendStatus(200); },
             function (error) { res.statusCode(404).send(error); });
     }
 
@@ -91,7 +91,7 @@ module.exports = function(app, models) {
         var updatedPage = req.body;
         var pageId = req.params.pageId;
         pageModel.updatePage(pageId, updatedPage).then(
-            function (success) { res.send(200);},
+            function (success) { res.sendStatus(200);},
             function (error) { res.statusCode(404).send(error);});
     }
 }

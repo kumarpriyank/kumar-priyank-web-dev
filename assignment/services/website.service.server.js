@@ -78,7 +78,7 @@ module.exports = function(app, models) {
     function deleteWebsite(req,res) {
         var wid=req.params.websiteId;
         websiteModel.deleteWebsite(wid).then(
-            function (success) { res.send(200); },
+            function (success) { res.sendStatus(200); },
             function (error) { res.statusCode(404).send(error); });
     }
 
@@ -90,7 +90,7 @@ module.exports = function(app, models) {
         var updatedWebsite = req.body;
         var wid = req.params.websiteId;
         websiteModel.updateWebsite(wid, updatedWebsite).then(
-            function (success) { res.send(200);},
+            function (success) { res.sendStatus(200);},
             function (error) { res.statusCode(404).send(error);});
     }
 }

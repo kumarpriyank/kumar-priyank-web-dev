@@ -26,7 +26,7 @@ module.exports = function(app, models) {
         userModel
             .createUser(user)
             .then(
-                function(user){ console.log(user); res.json(user); },
+                function(user){ res.json(user); },
                 function(error){ res.statusCode(400).send(error); }
             );
     }
@@ -92,7 +92,7 @@ module.exports = function(app, models) {
         var userId = req.params.uid;
         userModel.updateUser(userId,user)
             .then (
-                function (success) { res.send(200); },
+                function (success) { res.sendStatus(200); },
                 function (error) { res.statusCode(404).send(error); }
             );
     }
@@ -105,7 +105,7 @@ module.exports = function(app, models) {
         userModel
             .deleteUser(userId)
             .then(
-                function (success) { res.send(200); },
+                function (success) { res.sendStatus(200); },
                 function (error) { res.statusCode(404).send(error); } );
     }
 }

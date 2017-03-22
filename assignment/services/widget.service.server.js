@@ -28,7 +28,7 @@ module.exports= function (app, models) {
         var pid = req.params.pageId;
         widgetModel.findWidgetsByPageId(pid).then(
             function (widgets) { res.json(widgets); },
-            function (error) { res.sendStatus(404).send(error); });
+            function (error) { res.statusCode(404).send(error); });
     }
 
     /*
@@ -142,7 +142,7 @@ module.exports= function (app, models) {
                         widget.width = "100%";
 
                     widgetModel.updateWidget(widgetId,widget).then(
-                        function(success){ res.send(200); },
+                        function(success){ res.sendStatus(200); },
                         function(error){ res.statusCode(404).send(error); });
                     },
 
