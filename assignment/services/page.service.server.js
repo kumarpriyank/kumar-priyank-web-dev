@@ -6,16 +6,6 @@ module.exports = function(app, models) {
     var pageModel = models.pageModel;
     var websiteModel = models.websiteModel;
 
-    /*
-    var pages = [
-        {_id: "324", name: "Post 11", websiteId: "123", description: "Lorem Ipsum 324" },
-        {_id: "322", name: "Post 12", websiteId: "123", description: "Lorem Ipsum 322" },
-        {_id: "323", name: "Post 13", websiteId: "123", description: "Lorem Ipsum 323" },
-        {_id: "321", name: "Post 1", websiteId: "456", description: "Lorem Ipsum 321" },
-        {_id: "432", name: "Post 2",  websiteId: "456", description: "Lorem Ipsum 432" },
-        {_id: "543", name: "Post 3",  websiteId: "456", description: "Lorem Ipsum 543" }];
-        */
-
    /*
     *    Defining the request Handlers
     */
