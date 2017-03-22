@@ -9,7 +9,7 @@ module.exports= function (app, models) {
     var widgetModel = models.widgetModel;
     var pageModel = models.pageModel;
 
-    
+
     /*
      *    Defining the request Handlers
      */
@@ -163,7 +163,7 @@ module.exports= function (app, models) {
         var e = parseInt(req.query.end);
 
         widgetModel.reorderWidget(pageId,s,e).then(
-            function(success){ res.send(200); },
+            function(success){ res.sendStatus(200); },
             function(error){ res.statusCode(404).send(error); });
     }
 }

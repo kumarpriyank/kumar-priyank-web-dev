@@ -17,16 +17,10 @@
                 .find("#widgetList")
                 .sortable({
                     axis: 'y',
-                    start: function(event,ui) {
-                        sIndex = ui.item.index();
-                    },
-                    stop: function(event,ui) {
-                        eIndex = ui.item.index();
-                        myScope.callback({start:sIndex, end:eIndex});
-                    }
+                    start: function(event,ui) { sIndex = ui.item.index(); },
+                    stop: function(event,ui) { eIndex = ui.item.index(); myScope.callback({start:sIndex, end:eIndex}); }
                 });
         }
-//../views/widget/templates/widget-list.html
         return{
             templateUrl: "../../../assignment/assignment4/views/widget/templates/widget-list.html",
             scope:{ widgetList: "=data", callback: "&",  model: "=model"},

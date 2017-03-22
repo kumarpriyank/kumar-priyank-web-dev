@@ -17,7 +17,8 @@
         function init() {
             WidgetService.findWidgetsByPageId(vm.pageId).then(function(result){
                 vm.widgets = result.data;
-                $("#widgetList").sortable({ axis:"y" });  });
+                //$("#widgetList").sortable({ axis:"y" });
+                });
         } init();
 
 
@@ -33,9 +34,9 @@
         }
 
         function reorderWidget(index1, index2) {
-            WidgetService
-                .reorderWidget(vm.pageId,index1,index2)
-                .then( function(success){ init(); }, function(error){ vm.error = "Unable to order Widgets"; });
+            WidgetService.reorderWidget(vm.pageId,index1,index2).then(
+                function(success){ init(); },
+                function(error){ vm.error = "Unable to order Widgets"; });
         }
     }
 })();

@@ -43,16 +43,33 @@ module.exports = function () {
 
     // Create New Widget
     function createWidget(pageId, newWidget){
+
         var deferred = q.defer();
         newWidget._page = pageId;
-        Widget.create(newWidget, function (error, response) {
-            if(error)
-                deferred.reject(error);
-            else
-                deferred.resolve(response);
-        });
-        return deferred.promise;
+
+        // Get the widget order before inserting
+        return Widget.find({_page: pageId}).then(
+            function (widgets) {
+                newWidget.order = widgets.length;
+                Widget.create(newWidget, function (error, response) {
+                    if(error)
+                        deferred.reject(error);
+                    else
+                        deferred.resolve(response);
+                });
+                return deferred.promise;
+            });
+
+
+
+
+
+
+
+
+
     }
+
 
     // Find Widget by Widget Id
     function findWidgetById(widgetId){

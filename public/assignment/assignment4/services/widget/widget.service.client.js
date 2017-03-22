@@ -51,8 +51,7 @@
 
         // Reorder Widget
         function reorderWidget(pageId, index1, index2) {
-            var url = "/page/"+pageId+"/widget?start="+index1+"&end="+index2;
-            return $http.put(url);
+            return $http.put("/page/"+pageId+"/widget?start="+index1+"&end="+index2);
 
         }
     }

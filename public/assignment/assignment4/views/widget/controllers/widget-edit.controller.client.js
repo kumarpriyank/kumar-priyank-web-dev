@@ -29,7 +29,6 @@
         }
 
         function updateWidget(widget) {
-            console.log(widget);
             widget.pageId = vm.pageId;
             WidgetService.updateWidget(vm.widgetId, widget).then(
                 function (result) { $location.url("/user/"+ vm.userId+ "/website/"+ vm.websiteId+"/page/" + vm.pageId+"/widget"); },
