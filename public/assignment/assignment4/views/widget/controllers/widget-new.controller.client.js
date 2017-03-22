@@ -23,12 +23,9 @@
             WidgetService.createWidget(vm.pageId,widget).then(
                     function(result){
                         vm.widget = result.data;
-                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+vm.widget._id);
-                    },
+                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+vm.widget._id); },
                     function(error){
-                        vm.error = "Unable to create a new widget";
-                    }
-                );
+                        vm.error = "Unable to create a new widget";} );
         }
     }
 })();

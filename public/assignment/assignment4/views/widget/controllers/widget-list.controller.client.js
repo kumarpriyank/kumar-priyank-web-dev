@@ -11,6 +11,7 @@
 
         vm.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
         vm.getTrustedHtml = getTrustedHtml;
+        vm.reorderWidget = reorderWidget;
 
 
         function init() {
@@ -29,6 +30,12 @@
             var id = urlParts[urlParts.length - 1];
             var url = "https://www.youtube.com/embed/"+id;
             return $sce.trustAsResourceUrl(url);
+        }
+
+        function reorderWidget(index1, index2) {
+            WidgetService
+                .reorderWidget(vm.pageId,index1,index2)
+                .then( function(success){ init(); }, function(error){ vm.error = "Unable to order Widgets"; });
         }
     }
 })();

@@ -18,7 +18,7 @@
             // Used for checking if the username is already present.
             var usernameAlreadyPresent=UserService.findUserByUsername(user.username);
             usernameAlreadyPresent.success(function (newUser) {
-                if(newUser!=='0'){
+                if(newUser.length != 0){
                     vm.error="User Name already taken";
                     return;
                 }
@@ -38,7 +38,7 @@
                             } else {
                                 vm.error = "User does not exist";
                             }
-                        }).error(function (error) { console.log("HTTP Error Occured"); })
+                        }).error(function (error) { console.log(error); console.log("HTTP Error Occured"); })
                     }
                     else {
                         if (user.username === undefined || user.username==="") {

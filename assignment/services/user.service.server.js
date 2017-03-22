@@ -1,16 +1,24 @@
 /**
  * Created by Priyank Kumar on 2/27/17.
  */
-module.exports = function(app) {
+module.exports = function(app, models) {
+
 
     /*
      *    Defining the list of users
-     */
+
     var users = [
         {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder", email: "Wonder@alice.com"  },
         {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley", email: "Marley@bob.com"  },
         {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia", email: "Garcia@andrew.com" },
         {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi", email: "Annunzi@Jose.com" }];
+     */
+
+
+    /*
+     *  Creating a User Model
+     */
+    var userModel = models.userModel;
 
     /*
      *    Defining the request Handlers
@@ -21,48 +29,19 @@ module.exports = function(app) {
     app.put('/api/user/:uid', updateUser);
     app.delete('/api/user/:uid', deleteUser);
 
-    /*
-     *    Defining the list of users
-     */
-    function deleteUser(req, res) {
-        var userId = req.params.uid;
-        for(var u in users) {
-            if(users[u]._id == userId) {
-                users.splice(u, 1);
-            }
-        }
-        res.send(200);
-    }
-
-    /*
-     *    Update the user having userId specified
-     */
-    function updateUser(req, res) {
-        // BOdy is not retrieving the value
-        var user = req.body;
-        var userId = req.params.uid;
-        for(var u in users) {
-            if(users[u]._id == userId) {
-                users[u].email = user.email;
-                users[u].firstName = user.firstName;
-                users[u].lastName = user.lastName;
-
-                res.json(users[u]);
-                return;
-            }
-        }
-        res.send(404);
-    }
 
     /*
      *    Create a new user and add to user list
      */
     function createUser(req, res) {
         var user = req.body;
-        users.push(user);
-        res.send(user);
+        userModel
+            .createUser(user)
+            .then(
+                function(user){ console.log(user); res.json(user); },
+                function(error){ res.statusCode(400).send(error); }
+            );
     }
-
 
     /*
      *    Find User Handler Function - Decides based on the parameters what it needs to invoke.
@@ -77,47 +56,68 @@ module.exports = function(app) {
         }
     }
 
+
     /*
      *   Find the user by credentials
      */
     function findUserByCredentials(req, res) {
         var username = req.query.username;
         var password = req.query.password;
-        for(var u in users) {
-            if(users[u].username === username &&
-                users[u].password === password) {
-                res.send(users[u]);
-                return;
-            }
-        }
-        res.send('0');
+        userModel.findUserByCredentials(username,password)
+            .then(
+                function (user) { res.json(user);},
+                function (error) { res.status(404).send(error); }
+            );
     }
+
 
     /*
      *    Find the user by username
      */
     function findUserByUsername(req, res) {
         var username = req.query.username;
-        for(var u in users) {
-            if(users[u].username === username) {
-                res.send(users[u]);
-                return;
-            }
-        }
-        res.send('0');
+        userModel.findUserByUsername(username)
+            .then(
+                function (user) { res.json(user); } ,
+                function (error) { res.statusCode(404).send(error); } );
     }
+
 
     /*
      *    Find the user by userId
      */
     function findUserById(req, res) {
         var userId = req.params.uid;
-        for(var u in users) {
-            if(users[u]._id == userId) {
-                res.send(users[u]);
-                return;
-            }
-        }
-        res.send('0');
+        userModel.findUserById(userId)
+            .then (
+                function (user) { res.send(user); },
+                function (error) { res.statusCode(404).send(error); }
+            );
+    }
+
+
+    /*
+     *    Update the user having userId specified
+     */
+    function updateUser(req, res) {
+        var user = req.body;
+        var userId = req.params.uid;
+        userModel.updateUser(userId,user)
+            .then (
+                function (success) { res.send(200); },
+                function (error) { res.statusCode(404).send(error); }
+            );
+    }
+
+    /*
+     *    Defining the list of users
+     */
+    function deleteUser(req, res) {
+        var userId = req.params.uid;
+        userModel
+            .deleteUser(userId)
+            .then(
+                function (success) { res.send(200); },
+                function (error) { res.statusCode(404).send(error); } );
     }
 }

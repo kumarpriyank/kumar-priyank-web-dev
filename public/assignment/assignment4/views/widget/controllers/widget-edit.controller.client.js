@@ -29,9 +29,11 @@
         }
 
         function updateWidget(widget) {
+            console.log(widget);
             widget.pageId = vm.pageId;
-            WidgetService.updateWidget(vm.widgetId,widget).success(function (result) { $location.url("/user/"+ vm.userId+ "/website/"+ vm.websiteId+"/page/" + vm.pageId+"/widget"); })
-                .error(function (error) { vm.error= "Error Updating widget"; });
+            WidgetService.updateWidget(vm.widgetId, widget).then(
+                function (result) { $location.url("/user/"+ vm.userId+ "/website/"+ vm.websiteId+"/page/" + vm.pageId+"/widget"); },
+                function (error) { vm.error= "Error Updating widget"; });
         }
     }
 })();

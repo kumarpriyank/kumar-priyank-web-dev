@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 
 
-require ("./test/app.js")(app);
+//require ("./test/app.js")(app);
 
 // Server Related Changes for Assignment 4
 require("./assignment/app.js")(app);

@@ -16,7 +16,7 @@
 
         // Creating a Website
         function createWebsite(userId, website) {
-            website._id = new Date().getTime()+"";
+           // website._id = new Date().getTime()+"";
             website.developerId = userId;
             return $http.post("/api/user/"+userId+"/website", website);
         }

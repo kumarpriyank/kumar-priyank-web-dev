@@ -6,5 +6,5 @@
 
 (function () {
     angular
-        .module("WebAppMaker", ["ngRoute"]);
+        .module("WebAppMaker", ["ngRoute","textAngular","wamDirectives"]);
 })(); 

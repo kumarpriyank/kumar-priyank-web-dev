@@ -16,7 +16,7 @@
 
         // Creating a Page
         function createPage(websiteId, page) {
-            page._id = (new Date()).getTime()+"";
+            //page._id = (new Date()).getTime()+"";
             page.websiteId=websiteId;
             return $http.post("/api/website/"+websiteId +"/page", page);
         }

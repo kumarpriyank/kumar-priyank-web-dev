@@ -1,14 +1,17 @@
 /**
  * Created by Priyank Kumar on 2/27/17.
  */
-module.exports= function (app) {
+module.exports= function (app, models) {
 
     var multer = require('multer'); // npm install multer --save
     var upload = multer({ dest: __dirname+'/../../public/uploads' });
 
+    var widgetModel = models.widgetModel;
+    var pageModel = models.pageModel;
+
     /*
      *    Defining the list of widgets
-     */
+
     var widgets = [
         {_id: "123", widgetType: "HEADER", pageId: "321", size:"2", text: "GIZMODO"},
         {_id: "234", widgetType: "HEADER", pageId: "321", size:"4", text: "Loren Ipsum 321"},
@@ -21,6 +24,8 @@ module.exports= function (app) {
         {_id: "349", widgetType: "IMAGE", text:"Image1", pageId: "324", width:"100%", url: "http://lorempixel.com/400/200/"},
         {_id: "459", widgetType: "HTML", pageId: "324", text: "<p> Lorem</p>" },
         {_id: "679", widgetType: "YOUTUBE", pageId: "324", width:"100%", url: "http://youtube.com/AM2Ivdi9c4E"} ];
+     */
+
 
     /*
      *    Defining the request Handlers
@@ -31,34 +36,26 @@ module.exports= function (app) {
     app.put("/api/widget/:widgetId",updateWidget);
     app.post("/api/page/:pageId/widget",createWidget);
     app.post ("/api/upload", upload.single('myFile'), uploadImage);
+    app.put("/page/:pageId/widget",reorderWidget);
 
     /*
      *    Find the Widgets by PageID
      */
     function findWidgetsByPageId(req,res) {
         var pid = req.params.pageId;
-        var result = [];
-        for(var w in widgets) {
-            if(widgets[w].pageId == pid) {
-                result.push(widgets[w]);
-            }
-        }
-        res.json(result);
+        widgetModel.findWidgetsByPageId(pid).then(
+            function (widgets) { res.json(widgets); },
+            function (error) { res.sendStatus(404).send(error); });
     }
-
 
     /*
      *   Find widget by Widget ID
      */
     function findWidgetById(req,res) {
         var widgetId=req.params.widgetId;
-        for (var w in widgets){
-            if(widgets[w]._id == widgetId){
-                res.json(widgets[w]);
-                return;
-            }
-        }
-        res.sendStatus(400);
+        widgetModel.findWidgetById(widgetId).then(
+            function (widget) { res.json(widget); },
+            function (error) { res.statusCode(404).send(error); });
     }
 
     /*
@@ -67,15 +64,12 @@ module.exports= function (app) {
     function updateWidget(req,res) {
         var updatedWidget = req.body;
         var widgetId = req.params.widgetId;
-        for(var w in widgets) {
-            if(widgets[w]._id == widgetId){
-                widgets[w] = updatedWidget;
-                res.sendStatus(200);
-                return;
-            }
-        }
-        res.sendStatus(400);
+
+        widgetModel.updateWidget(widgetId, updatedWidget).then(
+            function (success) { res.json(success); },
+            function (error) { res.statusCode(404).send(error); });
     }
+
 
     /*
      *    Create a new Widget
@@ -84,25 +78,46 @@ module.exports= function (app) {
 
         var pageId = req.params.pageId;
         var widget = req.body;
-        widget.pageId = pageId;
-        widget._id =  new Date().getTime()+"";
-        widgets.push(widget);
-        res.json(widget);
+
+        // Create New Page - 1) Create a new page and insert into the page table
+        // 2) Update the pages array of websites with the latest created page Id.
+
+        // Getting hold of the page by the page Id provided
+        var pageObjectPromise = pageModel.findPageById(pageId);
+
+        // Adding the Widget
+        var newWidgetPromise = widgetModel.createWidget(pageId, widget);
+
+
+
+        // Now we will use Promise all to work only when we get both the calls return success.
+        // Promise.all() returns a single Promise that resolves when all of the promises in the iterable argument have resolved,
+        // or rejects with the reason of the first promise that rejects.
+
+        Promise.all([pageObjectPromise, newWidgetPromise]).then(
+            function (success) {
+                // Adding websites to widgets table websites array
+                success[0].widgets.push(success[1]._id);
+
+                // Updating the website table also with the updated pages
+                pageModel.updatePage(pageId, success[0]).then(
+                    function (page) { res.json(success[1]); },
+                    function (error1) { res.statusCode(500).send(error1); }); },
+            function (error) {
+                res.statusCode(500).send(error);
+            });
     }
+
+
 
     /*
      *    Delete a  Widget by Widget Id
      */
     function deleteWidget(req,res) {
         var widgetId=req.params.widgetId;
-        for(var w in widgets) {
-            if(widgets[w]._id == widgetId){
-                widgets.splice(w, 1);
-                res.sendStatus(200);
-                return;
-            }
-        }
-        res.sendStatus(400);
+        widgetModel.deleteWidget(widgetId).then(
+            function (success) { res.json(success); },
+            function (error) { res.statusCode(404).send(error); });
     }
 
     /*
@@ -134,21 +149,38 @@ module.exports= function (app) {
             // Mime type of the file
             var mimetype = myFile.mimetype;
 
-            for (var w in widgets) {
-                if (widgets[w]._id == widgetId) {
-                    widgets[w].text = text;
-                    widgets[w].url = "/uploads/" + filename;
-                    if(width){
-                        widgets[w].width = width;
-                    }else{
-                        widgets[w].width = "100%";
-                    }
+            widgetModel.findWidgetById(widgetId).then(
+                function(widget){
+                    widget.url = "/uploads/" + filename;
 
-                }
-            }
-            res.redirect("/assignment/assignment4/#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
-        }else {
+                    if(width)
+                        widget.width = width;
+                    else
+                        widget.width = "100%";
+
+                    widgetModel.updateWidget(widgetId,widget).then(
+                        function(success){ res.send(200); },
+                        function(error){ res.statusCode(404).send(error); });
+                    },
+
+                function(error){ res.statusCode(404).send(error); });
+
             res.redirect("/assignment/assignment4/#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
         }
+        else
+            res.redirect("/assignment/assignment4/#/user/"+userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
+    }
+
+    /*
+     *    Reorder Widgets
+     */
+    function reorderWidget(req,res){
+        var pageId = req.params.pageId;
+        var s = parseInt(req.query.start);
+        var e = parseInt(req.query.end);
+
+        widgetModel.reorderWidget(pageId,s,e).then(
+            function(success){ res.send(200); },
+            function(error){ res.statusCode(404).send(error); });
     }
 }

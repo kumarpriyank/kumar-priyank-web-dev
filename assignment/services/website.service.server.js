@@ -1,11 +1,14 @@
 /**
  * Created by Priyank Kumar on 2/27/17.
  */
-module.exports = function(app) {
+module.exports = function(app, models) {
+
+    var websiteModel = models.websiteModel;
+    var userModel = models.userModel;
 
     /*
      *    Defining the list of websites
-     */
+
     var websites = [
         {_id: "123", name: "Facebook", developerId: "456", description: "Lorem 1233" },
         {_id: "234", name: "Tweeter",  developerId: "456", description: "Lorem 234" },
@@ -15,6 +18,9 @@ module.exports = function(app) {
         {_id: "1235", name: "Chess", developerId: "234", description: "Lorem 1235" },
         {_id: "124", name: "Checkers", developerId: "234", description: "Lorem Ipsum 124" },
         {_id: "125", name: "BlackJack", developerId: "234", description: "Lorem Ispum Lorem 125" }];
+     */
+
+
 
     /*
      *    Defining the request Handlers
@@ -30,13 +36,20 @@ module.exports = function(app) {
      */
     function findWebsitesByUser(req,res) {
         var userId = req.params.userId;
-        var result = [];
-        for(var w in websites) {
-            if(websites[w].developerId == userId) {
-                result.push(websites[w]);
-            }
-        }
-        res.json(result);
+            websiteModel.findWebsitesByUser(userId).then(
+                function (website) { res.json(website); },
+                function (error) { res.statusCode(404).send(error); });
+    }
+
+
+    /*
+     *    Find the Websites by Website Id
+     */
+    function findWebsiteById(req,res) {
+        var wid=req.params.websiteId;
+            websiteModel.findWebsiteById(wid).then(
+                function (website) { res.json(website); },
+                function (error) { res.statusCode(404).send(error);} );
     }
 
     /*
@@ -44,21 +57,35 @@ module.exports = function(app) {
      */
     function createWebsite (req,res) {
         var website = req.body;
-        websites.push(website);
-        res.send(website);
-    }
+        var userId = req.params.userId;
 
-    /*
-     *    Find the websites by website Id
-     */
-    function findWebsiteById(req,res) {
-        var wid=req.params.websiteId;
-        for (var w in websites){
-            if(websites[w]._id===wid){
-                res.send(websites[w]);
-            }
-        }
+        // Create New Website - 1) Create a new website and insert into the websites table
+        // 2) Update the websites array of users with the latest created website Id.
 
+        // Getting hold of the user by the userId provided
+        var userObjectPromise = userModel.findUserById(userId);
+
+        // Adding the website
+        var newWebSitePromise = websiteModel.createWebsite(userId, website);
+
+
+        // Now we will use Promise all to work only when we get both the calls return success.
+        // Promise.all() returns a single Promise that resolves when all of the promises in the iterable argument have resolved,
+        // or rejects with the reason of the first promise that rejects.
+
+        Promise.all([userObjectPromise, newWebSitePromise]).then(
+                function (success) {
+                    // Adding websites to user table websites array
+                    success[0].websites.push(success[1]._id);
+
+                    // Updating the user table also with the updated user
+                    userModel.updateUser(userId, success[0]).then(
+                        function (user) { res.json(success[1]); },
+                        function (error) { res.statusCode(500).send(error);}); },
+
+                function (error) {
+                    res.statusCode(500).send(error);
+                });
     }
 
     /*
@@ -66,13 +93,11 @@ module.exports = function(app) {
      */
     function deleteWebsite(req,res) {
         var wid=req.params.websiteId;
-        for(var w in websites) {
-            if(websites[w]._id === wid) {
-                websites.splice(w, 1);
-            }
-        }
-        res.sendStatus(200);
+        websiteModel.deleteWebsite(wid).then(
+            function (success) { res.send(200); },
+            function (error) { res.statusCode(404).send(error); });
     }
+
 
     /*
      *    Update Websites using WebsiteId
@@ -80,12 +105,8 @@ module.exports = function(app) {
     function updateWebsite(req,res) {
         var updatedWebsite = req.body;
         var wid = req.params.websiteId;
-        for(var w in websites) {
-            if(websites[w]._id === wid) {
-                websites[w] = updatedWebsite;
-            }
-        }
-        res.sendStatus(200);
+        websiteModel.updateWebsite(wid, updatedWebsite).then(
+            function (success) { res.send(200);},
+            function (error) { res.statusCode(404).send(error);});
     }
-
 }

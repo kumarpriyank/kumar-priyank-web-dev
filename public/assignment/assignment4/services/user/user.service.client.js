@@ -17,7 +17,7 @@
 
         // Creating a user
         function createUser(user) {
-            user._id = (new Date()).getTime() + "";
+            //user._id = (new Date()).getTime() + "";
             return $http.post("/api/user/", user);
         }
 
@@ -32,7 +32,6 @@
         }
 
         // Find users by Credentials Server
-        // -Current RUN
         function findUserByCredentials(username, password) {
             return $http.get("/api/user?username="+username+"&password="+password);
         }
