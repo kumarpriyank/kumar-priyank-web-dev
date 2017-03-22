@@ -8,7 +8,7 @@
  */
 module.exports = function () {
 
-    // Import the Mongoose Libraey
+    // Import the Mongoose Library
     var mongoose = require("mongoose");
 
     // Set the Connection String
@@ -16,14 +16,14 @@ module.exports = function () {
     var connectionString = 'mongodb://127.0.0.1:27017/cs5610spring';
 
 
-/*
+
     if(process.env.MLAB_USERNAME) {
         connectionString = process.env.MLAB_USERNAME + ":" +
             process.env.MLAB_PASSWORD + "@" +
             process.env.MLAB_HOST + ':' +
             process.env.MLAB_PORT + '/' +
             process.env.MLAB_APP_NAME;
-    }*/
+    }
 
 
     //Get the default connection
