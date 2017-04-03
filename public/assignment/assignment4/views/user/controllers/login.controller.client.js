@@ -16,11 +16,19 @@
         function init() {} init();
 
         // Defining the login function, that handles the login
-        function login(user) {
-            var promise = UserService.findUserByCredentials(user.username, user.password);
-            promise.then(
-                function (res) { var loginUser = res.data; $location.url("/user/"+loginUser._id); },
-                function (error) { vm.error = "User not found"; } );
+        function login(username, password, loginForm) {
+
+            if(loginForm.$valid){
+                UserService.login(username, password).then(
+                    function (response) {
+                        if(response.data)
+                            $location.url("/user");
+                    },
+                    function (error) {
+                        vm.error = "User not found. Please try again";
+                    });
+            } else
+                vm.error = "Some error occured";
         }
     }
 })();

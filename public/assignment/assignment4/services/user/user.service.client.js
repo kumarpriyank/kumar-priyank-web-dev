@@ -11,13 +11,17 @@
             "findUserByUsername": findUserByUsername,
             "findUserByCredentials": findUserByCredentials,
             "updateUser":updateUser,
-            "deleteUser":deleteUser
+            "deleteUser":deleteUser,
+            // Added owing to security Module
+            "login":login,
+            "logout":logout,
+            "loggedIn":loggedIn,
+            "register":register
         };
         return api;
 
         // Creating a user
         function createUser(user) {
-            //user._id = (new Date()).getTime() + "";
             return $http.post("/api/user/", user);
         }
 
@@ -44,6 +48,26 @@
         // Delete the user
         function deleteUser(userId) {
             return $http.delete("/api/user/" + userId);
+        }
+
+        // Login the user
+        function login(username, password) {
+            var user = { username:username, password:password};
+            return $http.post("/api/login", user);
+        }
+
+        // Logout the user
+        function logout(){
+            return $http.post("/api/logout/");
+        }
+
+        // Logged in User
+        function loggedIn() {
+            return $http.get("/api/loggedIn/");
+        }
+
+        function register(user) {
+            return $http.post("/api/register",user);
         }
     }
 })();

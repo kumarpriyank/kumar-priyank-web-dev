@@ -3,11 +3,12 @@
         .module("WebAppMaker")
         .controller("RegisterController", registerController);
 
-    function registerController($location, UserService) {
+    function registerController($location, UserService, $routeParams) {
         var vm = this;
 
         // event handlers
         vm.register = register;
+        vm.registerSec = registerSec;
 
         function init() {
         }
@@ -53,6 +54,30 @@
                     }
                 }
             })
+        }
+
+        function registerSec(user, registerForm) {
+
+            if(registerForm.$valid && registerForm.password.$modelValue == registerForm.verifyPassword.$modelValue) {
+
+                var nUser = {
+                    username:user.username,
+                    password: user.password,
+                    firstName:user.username,
+                    lastName:user.username,
+                    email:user.username+"@gmail.com"
+                };
+
+                UserService.register(nUser).then(
+                    function(response) { var user = response.data; $location.url("/user"); },
+                    function(err) { vm.error = "Internal Error. Please try again"; });
+            } else {
+
+                vm.error = "Error Occured, Please try again";
+
+                if(registerForm.password.$modelValue != registerForm.verifyPassword.$modelValue)
+                    vm.error="Passwords do not match";
+            }
         }
     }
 })();

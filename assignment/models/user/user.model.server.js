@@ -20,7 +20,8 @@ module.exports = function () {
         findUserByCredentials: findUserByCredentials,
         createUser: createUser,
         updateUser: updateUser,
-        deleteUser: deleteUser
+        deleteUser: deleteUser,
+        findFacebookUser:findFacebookUser
     };
     return api;
 
@@ -98,5 +99,9 @@ module.exports = function () {
                 deferred.resolve(response);
         });
         return deferred.promise;
+    }
+
+    function findFacebookUser(facebookId){
+        return User.findOne({"facebook.id": facebookId})
     }
 };
